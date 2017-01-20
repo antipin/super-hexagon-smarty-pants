@@ -1,4 +1,5 @@
 import { compose, logger, hapi } from 'appi'
+import { staticFilesServer } from './modules'
 
 const env = {}
 
@@ -21,6 +22,10 @@ export async function composeApp() {
         {
             component: hapi,
             deps: [ logger, env ],
+        },
+        {
+            component: staticFilesServer,
+            deps: [ hapi, logger ],
         },
     ])
 
